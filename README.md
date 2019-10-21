@@ -58,6 +58,8 @@ As a user
 So that I can plan my schedule
 I would like to add a range of available dates for a space
 
+------
+
 As a user(guest)
 So that I can plan my own journeys
 I can request to stay in a space for one night
