@@ -40,4 +40,36 @@ Nice-to-haves
 
 -Basic payment implementation though Stripe.
 
-User stories:
+Basic user stories:
+
+As a user
+so that I can use the service
+I would like to sign up with username, password and email
+
+As a user
+So that I can advertise my properties
+I would like to be able to list one or more spaces tied to my account
+
+As a user
+So that I can advertise my spaces' features
+I would like to add a price, description and title to a space
+
+As a user
+So that I can plan my schedule
+I would like to add a range of available dates for a space
+
+As a user(guest)
+So that I can plan my own journeys
+I can request to stay in a space for one night
+
+As a user(owner)
+So that I can let out spaces
+I would like to be able to approve stay requests
+
+As a user
+To avoid scheduling conflicts
+I would like non-available dates not to be viewable
+
+As a user(owner)
+So that a date is not locked out unnecessarily
+I would like a date to be available until a booking is confirmed
