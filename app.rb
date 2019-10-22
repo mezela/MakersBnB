@@ -17,5 +17,10 @@ get '/account' do
 
 end
 
+get '/listings' do
+  @properties = Property.view_all
+  erb(:listings)
+end
+
 run! if app_file == $0
 end
