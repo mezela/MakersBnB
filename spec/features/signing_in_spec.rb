@@ -1,12 +1,7 @@
 feature 'signing in' do
 
   scenario 'A user sees an error mssage if they give incorrect login details' do
-  visit '/'
-  click_button 'Sign up'
-  fill_in "username", with: "testusername"
-  fill_in "email", with: "testemail"
-  fill_in "password", with: "testpassword123"
-  click_button 'Create account'
+  sign_up
   fill_in "username", with: "testusername"
   fill_in "password", with: "wrongpassword123"
   click_button 'Log in'
