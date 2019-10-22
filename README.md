@@ -1,4 +1,4 @@
-Headline specifications
+##Headline specifications
 
 -Any signed-up user can list a new space.
 
@@ -14,7 +14,7 @@ Headline specifications
 
 -Until a user has confirmed a booking request, that space can still be booked for that night.
 
-Nice-to-haves
+##Nice-to-haves
 
 -Users should receive an email whenever one of the following happens:
 -They sign up

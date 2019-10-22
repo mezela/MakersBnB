@@ -1,4 +1,5 @@
 require 'pg'
+require_relative 'choose_database'
 
 class User
 
@@ -11,25 +12,17 @@ class User
   end
 
   def self.create(username: ,password: ,email:)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
-    end
+    connection = PG.connect(dbname: which_database)
     result = connection.exec("INSERT INTO users (username, email, password) VALUES('#{username}', '#{email}', '#{password}') RETURNING id, username, email;")
     User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'])
   end
 
   def self.all
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
-    end
+    connection = PG.connect(dbname: which_database)
     users = connection.exec("SELECT * FROM users;")
     users.map do |user|
       User.new(id: user['id'], username: user['username'] , email: user['email'])
     end
   end
-  
+
 end
