@@ -46,4 +46,11 @@ class User
     end
   end
 
+
+  def self.access_via_id(id)
+    connection = PG.connect(dbname: which_database)
+    result = connection.exec("SELECT * FROM users WHERE id ='#{id}';")
+    User.new(id: result[0]['id'], username: result[0]['username'] , email: result[0]['email'])
+  end
+
 end

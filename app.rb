@@ -43,6 +43,11 @@ post '/account_creation' do
   end
 end
 
+get'/profile/:id' do
+  @profile_owner = User.access_via_id(params[:id])
+  erb :profile
+end
+
 get '/listings' do
   @currentuser=session[:currentuser]
   @properties = Property.view_all

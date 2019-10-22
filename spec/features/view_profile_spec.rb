@@ -7,11 +7,11 @@ feature 'viewing a user profile' do
   fill_in "password", with: "testpassword123"
   click_button 'Create account'
   fill_in "username", with: "testusername"
-  fill_in "password", with: "wrongpassword123"
+  fill_in "password", with: "testpassword123"
   click_button 'Log in'
-  click_button 'View my profile'
-  expect(page).to have_content "testusername's profile"
+  click_button 'View Profile'
+  expect(page).to have_content "testusername"
   expect(page).to have_content 'testemail'
-  expect(page).to have_button 'Back'
+  expect(page).to have_button 'Go Back'
   end
 end

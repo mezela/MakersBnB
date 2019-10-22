@@ -1,0 +1,28 @@
+<head>
+  <title> Listings</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+
+<h1>This is a Profile Page</h1>
+
+
+
+<form action="/listings" method= 'get'>
+  <input type="submit" value="Go Back">
+</form>
+
+
+<table class="table-border" style="width:25%" >
+
+  <tr>
+    <th>Username:</th>
+    <th>Email:</th>
+  </tr>
+  <tr>
+    <th><%=@profile_owner.username%></th>
+    <th> <%=@profile_owner.email%></th>
+  </tr>
+</table>

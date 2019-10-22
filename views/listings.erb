@@ -8,9 +8,17 @@
 
 <body>
 <div class='table-text'>
+
+
+
+
 <h1>Welcome, <%=@currentuser.username%> </h1>
 <form action='/listings/new'>
   <input class="btn btn-primary" type='submit' value='Add new listing' />
+</form>
+
+<form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
+  <input type="submit" value="View Profile">
 </form>
 
 <table class="table-border" style="width:100%" >
