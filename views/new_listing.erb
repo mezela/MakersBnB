@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+<%= flash[:notice] %>
+
 <title>New listing</title>
 
 <body>
@@ -10,6 +12,9 @@
 <form action="/listings" method = 'post'>
   Title:<br>
   <input type="text" name="title" style="height: 20px; width: 500px" required>
+  <br>
+  Address:<br>
+  <input type="text" name="address" style="height: 20px; width: 500px" required>
   <br>
   Description:<br>
   <input type="text" name="description" style="height: 100px; width: 500px" placeholder="What are the attractive qualities of the property?" required>

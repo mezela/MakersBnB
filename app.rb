@@ -48,7 +48,11 @@ post '/listings' do
   # @start_date = params[:start_date].split('/').reverse.join('-')
   # @end_date = params[:end_date].split('/').reverse.join('-')
   @currentuserID = 35
-  Property.add(ownerID: @currentuserID, title: params[:title], description: params[:description], picture: params[:pictureurl], ppn: params[:ppn].to_i, start_date: params[:start_date], end_date: params[:end_date] )
+  property = Property.add(ownerID: @currentuserID, title: params[:title], address: params[:address], description: params[:description], picture: params[:pictureurl], ppn: params[:ppn].to_i, start_date: params[:start_date], end_date: params[:end_date] )
+  if property == 'unique error'
+    flash[:notice] = 'Property already exists'
+    redirect('/listings/new')
+  end
   redirect('/listings')
 end
 
