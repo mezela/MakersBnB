@@ -6,15 +6,17 @@ class Makersbnb<Sinatra::Base
 enable :sessions
 
 get '/' do
-'Hello'
+erb :index
 end
 
-get '/account/new' do
-
+get '/signup' do
+erb :signup
 end
 
-get '/account' do
-
+post '/account_creation' do
+User.create(username: params[:username], email: params[:email], password: params[:password])
+p params
+redirect '/'
 end
 
 run! if app_file == $0
