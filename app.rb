@@ -8,12 +8,16 @@ register Sinatra::Flash
 enable :sessions, :method_override
 
 get '/' do
-erb :index
+  erb :index
 end
 
 get '/signup' do
+  erb :signup
+end
 
-erb :signup
+post '/login' do
+  session[:id] = User.access_account(username: params[:username], password: params[:password])
+  redirect '/listings'
 end
 
 post '/account_creation' do
@@ -34,6 +38,7 @@ post '/account_creation' do
 end
 
 get '/listings' do
+  @currentuserID=session[:id]
   @properties = Property.view_all
   erb(:listings)
 end

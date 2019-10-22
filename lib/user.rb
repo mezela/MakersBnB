@@ -36,4 +36,9 @@ class User
     end
   end
 
+  def self.access_account(username, password)
+    connection = PG.connect(dbname: which_database)
+    currentuserID = connection.exec("SELECT id FROM users WHERE username ='#{username}' AND password ='#{password}'")
+  end
+
 end
