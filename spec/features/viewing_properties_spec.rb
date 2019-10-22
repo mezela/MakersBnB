@@ -15,7 +15,7 @@ feature 'viewing properties' do
       visit('/listings')
       # expect(page).to have_content('Welcome NAME')
       expect(page).to have_content('Cool test house')
-      # expect(page).to have_xpath("http://remodelarsyil.co/wp-content/uploads/2019/01/cool-houses-designs-cool-house-designs-cool-house-design-ideas-house-designs-ideas-cool-house-designs.jpg")
+      expect(page).to have_css("img[src*='http://remodelarsyil.co/wp-content/uploads/2019/01/cool-houses-designs-cool-house-designs-cool-house-design-ideas-house-designs-ideas-cool-house-designs.jpg']")
 
       expect(page).to have_content('It is a house and it is really cool but it is also just a test')
       expect(page).to have_content('£50')
