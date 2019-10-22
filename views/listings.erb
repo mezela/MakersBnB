@@ -1,0 +1,49 @@
+
+<head>
+  <title> Listings</title>  
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<div class='table-text'>
+<h1>Welcome, JAY</h1>
+<form action='/listings/new'>
+  <input class="btn btn-primary" type='submit' value='Add new listing' />
+</form>
+
+<table class="table-border" style="width:100%" >
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>PPN</th>
+    <th></th>
+  </tr>
+
+    <% @properties.each do |property| %>
+    <tr>
+      <td> <img style="width: 150px; height: auto" src="<%= property.picture %>" > </td>
+      <td> <%= property.title %> </td>
+      <td> <%= property.description %> </td>
+      <td> <%= property.start_date %> </td>
+      <td> <%= property.end_date %> </td>
+      <td> £<%= property.ppn %> </td>
+      <td>
+        <form action='/book/new'>
+          <input class="btn btn-primary" type='submit' value='Book now' />
+        </form>
+      </td>
+      </tr>
+    <% end %>
+
+  <tr>
+
+  </tr>
+</table>
+
+</div>
+</body>
