@@ -36,5 +36,4 @@ feature 'account creation' do
     expect(page).to have_content "Password must contain a number"
   end
 
-
 end

@@ -18,7 +18,12 @@ end
 post '/login' do
   p params
   session[:currentuser] = User.access_account(params[:username],params[:password])
-  redirect '/listings'
+  if (session[:currentuser] == "invalid login error")
+    flash[:warning] = 'Incorrect login details'
+    redirect '/'
+  else
+    redirect '/listings'
+  end
 end
 
 post '/account_creation' do
