@@ -16,7 +16,8 @@ get '/signup' do
 end
 
 post '/login' do
-  session[:id] = User.access_account(username: params[:username], password: params[:password])
+  p params
+  session[:currentuser] = User.access_account(params[:username],params[:password])
   redirect '/listings'
 end
 
@@ -38,7 +39,7 @@ post '/account_creation' do
 end
 
 get '/listings' do
-  @currentuserID=session[:id]
+  @currentuser=session[:currentuser]
   @properties = Property.view_all
   erb(:listings)
 end
