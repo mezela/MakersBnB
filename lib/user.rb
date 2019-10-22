@@ -13,8 +13,19 @@ class User
 
   def self.create(username: ,password: ,email:)
     connection = PG.connect(dbname: which_database)
-    result = connection.exec("INSERT INTO users (username, email, password) VALUES('#{username}', '#{email}', '#{password}') RETURNING id, username, email;")
-    User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'])
+    if(password.length<8)
+      return 'password_length_error'
+
+    elsif((password =~ /\d/)==nil)
+      return 'password_safety_error'
+    else
+      begin
+        result = connection.exec("INSERT INTO users (username, email, password) VALUES('#{username}', '#{email}', '#{password}') RETURNING id, username, email;")
+        User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'])
+      rescue
+        return 'unique error'
+      end
+    end
   end
 
   def self.all
