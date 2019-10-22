@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<title>New listing</title>
+
+<body>
+<h1>List a new Space </h1>
+<h2>Please enter property details in the fields below</h2>
+
+<form action="/listings" method = 'post'>
+  Title:<br>
+  <input type="text" name="title" style="height: 20px; width: 500px" required>
+  <br>
+  Description:<br>
+  <input type="text" name="description" style="height: 100px; width: 500px" placeholder="What are the attractive qualities of the property?" required>
+  <br>
+  Picture:<br>
+  <input type="text" name="pictureurl" style="height: 20px; width: 500px" placeholder="Add a great pic!" required>
+  <br>
+  Price per night:<br>
+  <input type="text" name="ppn" placeholder="£££" required>
+  <br>
+  Available from:<br>
+  <input type="date" data-date-format="YYYY-MM-DD" name="start_date" required>
+  <br>
+  Available to:<br>
+  <input type="date" name="end_date" required>
+  <br>
+  <input type="submit" value="List this space">
+</form>
+
+</body>
+</html>

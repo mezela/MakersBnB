@@ -34,8 +34,22 @@ post '/account_creation' do
 end
 
 get '/listings' do
+  @currentuserID = 35
   @properties = Property.view_all
   erb(:listings)
+end
+
+get '/listings/new' do
+  erb(:new_listing)
+end
+
+post '/listings' do
+  # @prop = Property.format_date(start_date: params[:start_date], end_date: params[:end_date] )
+  # @start_date = params[:start_date].split('/').reverse.join('-')
+  # @end_date = params[:end_date].split('/').reverse.join('-')
+  @currentuserID = 35
+  Property.add(ownerID: @currentuserID, title: params[:title], description: params[:description], picture: params[:pictureurl], ppn: params[:ppn].to_i, start_date: params[:start_date], end_date: params[:end_date] )
+  redirect('/listings')
 end
 
 run! if app_file == $0
