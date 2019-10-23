@@ -7,12 +7,7 @@ feature 'account creation' do
   end
 
   scenario 'a user is redirected to the homepage once they enter new account details' do
-    visit '/'
-    click_button 'Sign up'
-    fill_in "username", with: "testusername"
-    fill_in "email", with: "testemail"
-    fill_in "password", with: "testpassword123"
-    click_button 'Create account'
+    sign_up
     expect(current_path).to eq('/')
   end
 
@@ -35,6 +30,5 @@ feature 'account creation' do
     click_button 'Create account'
     expect(page).to have_content "Password must contain a number"
   end
-
 
 end
