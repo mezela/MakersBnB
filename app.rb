@@ -8,12 +8,22 @@ register Sinatra::Flash
 enable :sessions, :method_override
 
 get '/' do
-erb :index
+  erb :index
 end
 
 get '/signup' do
+  erb :signup
+end
 
-erb :signup
+post '/login' do
+  p params
+  session[:currentuser] = User.access_account(params[:username],params[:password])
+  if (session[:currentuser] == "invalid login error")
+    flash[:warning] = 'Incorrect login details'
+    redirect '/'
+  else
+    redirect '/listings'
+  end
 end
 
 post '/account_creation' do
@@ -33,7 +43,13 @@ post '/account_creation' do
   end
 end
 
+get'/profile/:id' do
+  @profile_owner = User.access_via_id(params[:id])
+  erb :profile
+end
+
 get '/listings' do
+  @currentuser=session[:currentuser]
   @properties = Property.view_all
   erb(:listings)
 end

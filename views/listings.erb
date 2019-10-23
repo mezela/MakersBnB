@@ -1,6 +1,6 @@
 
 <head>
-  <title> Listings</title>  
+  <title> Listings</title>
   <link rel="stylesheet" href="/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -8,9 +8,17 @@
 
 <body>
 <div class='table-text'>
-<h1>Welcome, JAY</h1>
+
+
+
+
+<h1>Welcome, <%=@currentuser.username%> </h1>
 <form action='/listings/new'>
   <input class="btn btn-primary" type='submit' value='Add new listing' />
+</form>
+
+<form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
+  <input type="submit" value="View Profile">
 </form>
 
 <table class="table-border" style="width:100%" >

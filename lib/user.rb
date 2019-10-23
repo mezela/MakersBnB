@@ -36,4 +36,21 @@ class User
     end
   end
 
+  def self.access_account(username, password)
+    begin
+      connection = PG.connect(dbname: which_database)
+      result = connection.exec("SELECT * FROM users WHERE username ='#{username}' AND password ='#{password}'")
+      User.new(id: result[0]['id'], username: result[0]['username'] , email: result[0]['email'])
+    rescue
+      'invalid login error'
+    end
+  end
+
+
+  def self.access_via_id(id)
+    connection = PG.connect(dbname: which_database)
+    result = connection.exec("SELECT * FROM users WHERE id ='#{id}';")
+    User.new(id: result[0]['id'], username: result[0]['username'] , email: result[0]['email'])
+  end
+
 end
