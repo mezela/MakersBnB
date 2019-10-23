@@ -5,15 +5,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-
-<h1>This is a Profile Page</h1>
-
-
-
-<form action="/listings" method= 'get'>
-  <input type="submit" value="Go Back">
-</form>
-
+<h1> <%=@profile_owner.username%>'s profile</h1>
 
 <table class="table-border" style="width:25%" >
 
@@ -26,3 +18,41 @@
     <th> <%=@profile_owner.email%></th>
   </tr>
 </table>
+
+<form action="/listings" method= 'get'>
+  <input class="btn btn-secondary" type="submit" value="Go Back">
+</form>
+<h2> <%=@profile_owner.username%>'s properties</h2>
+
+
+
+
+<table class="table-border" style="width:100%" >
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Description</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>PPN</th>
+    <th></th>
+  </tr>
+
+    <% @profile_owner_properties.each do |property| %>
+    <tr>
+      <td> <img style="width: 150px; height: auto" src="<%= property.picture %>" > </td>
+      <td> <%= property.title %> </td>
+      <td> <%= property.address %> </td>
+      <td> <%= property.description %> </td>
+      <td> <%= property.start_date %> </td>
+      <td> <%= property.end_date %> </td>
+      <td> £<%= property.ppn %> </td>
+      </tr>
+    <% end %>
+
+  <tr>
+
+  </tr>
+</table>
+

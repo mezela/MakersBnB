@@ -23,6 +23,13 @@ describe '.create' do
   end
 end
 
+describe '.findproperties' do
+    it 'returns all the properties owned by logged in user' do
+
+      # properties = User.findproperties
+      # expect(properties).to 
+    end
+  end
 
 
 end

@@ -45,11 +45,12 @@ end
 
 get'/profile/:id' do
   @profile_owner = User.access_via_id(params[:id])
+  @profile_owner_properties = User.findproperties(params[:id])
   erb :profile
 end
 
 get '/listings' do
-  @currentuser=session[:currentuser]
+  @currentuser = session[:currentuser]
   @currentuserID = @currentuser.id
   @properties = Property.view_all
   erb(:listings)
@@ -60,10 +61,8 @@ get '/listings/new' do
 end
 
 post '/listings' do
-  # @prop = Property.format_date(start_date: params[:start_date], end_date: params[:end_date] )
-  # @start_date = params[:start_date].split('/').reverse.join('-')
-  # @end_date = params[:end_date].split('/').reverse.join('-')
-  @currentuserID = 35
+  @currentuser = session[:currentuser]
+  @currentuserID = @currentuser.id
   property = Property.add(ownerID: @currentuserID, title: params[:title], address: params[:address], description: params[:description], picture: params[:pictureurl], ppn: params[:ppn].to_i, start_date: params[:start_date], end_date: params[:end_date] )
   if property == 'unique error'
     flash[:notice] = 'Property already exists'
