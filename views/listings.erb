@@ -23,7 +23,7 @@
 
   End date:
   <input type="text" name="address" required>
-  
+
   <input class="btn btn-primary" type="submit" value="Search">
 </form>
 
@@ -55,7 +55,7 @@
       <td> <%= property.end_date %> </td>
       <td> £<%= property.ppn %> </td>
       <td>
-        <form action='/book/new'>
+        <form action='/book/<%= property.id %>' method="get">
           <input class="btn btn-primary" type='submit' value='Book now' />
         </form>
       </td>

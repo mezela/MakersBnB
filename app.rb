@@ -2,6 +2,8 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require_relative 'lib/property'
 require_relative 'lib/user'
+require_relative 'lib/request'
+
 
 class Makersbnb<Sinatra::Base
 register Sinatra::Flash
@@ -44,6 +46,7 @@ post '/account_creation' do
 end
 
 get'/profile/:id' do
+  @requests = Request.view_from_guestid(params[:id])
   @profile_owner = User.access_via_id(params[:id])
   erb :profile
 end
@@ -55,15 +58,27 @@ get '/listings' do
   erb(:listings)
 end
 
+get '/book/:id' do
+  @currentuser=session[:currentuser]
+  session[:property_being_booked] = Property.access_via_id(params[:id])
+  @property = session[:property_being_booked]
+  erb :create_booking
+end
+
+post '/create_booking' do
+  @property = session[:property_being_booked]
+  @currentuserID = session[:currentuser].id
+  date = params[:date]
+  Request.add(guestID: @currentuserID, ownerID: @property.ownerID , propertyID: @property.id , date: date)
+  redirect ('/listings')
+end
+
 get '/listings/new' do
   erb(:new_listing)
 end
 
 post '/listings' do
-  # @prop = Property.format_date(start_date: params[:start_date], end_date: params[:end_date] )
-  # @start_date = params[:start_date].split('/').reverse.join('-')
-  # @end_date = params[:end_date].split('/').reverse.join('-')
-  @currentuserID = 35
+  @currentuserID = session[:currentuser].id
   property = Property.add(ownerID: @currentuserID, title: params[:title], address: params[:address], description: params[:description], picture: params[:pictureurl], ppn: params[:ppn].to_i, start_date: params[:start_date], end_date: params[:end_date] )
   if property == 'unique error'
     flash[:notice] = 'Property already exists'

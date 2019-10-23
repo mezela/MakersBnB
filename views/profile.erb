@@ -1,14 +1,25 @@
 <head>
-  <title> Listings</title>
-  <link rel="stylesheet" href="/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
 </head>
 
 
-<h1>This is a Profile Page</h1>
-
-
+<h1>User information: </h1>
 
 <form action="/listings" method= 'get'>
   <input type="submit" value="Go Back">
@@ -25,4 +36,21 @@
     <th><%=@profile_owner.username%></th>
     <th> <%=@profile_owner.email%></th>
   </tr>
+</table>
+
+<h1>Your booking requests: </h1>
+
+<table class="table-border" style="width:25%" >
+  <tr>
+    <th>Property name:</th>
+    <th>date:</th>
+    <th>confirmed:</th>
+  </tr>
+  <% @requests.each do |request| %>
+    <tr>
+    <td> <%= request.propertyid %> </td>
+    <td> <%= request.date%> </td>
+    <td> <%= request.confirmed %> </td>
+    </tr>
+  <% end %>
 </table>

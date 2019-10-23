@@ -1,0 +1,20 @@
+<head>
+  <h1>Welcome, <%=@currentuser.username%> </h1>
+  <title> Make a Booking</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<center>
+
+<form action="/create_booking" method = 'post'>
+  <h1>
+  Enter Booking Date: <br> <br>
+  </h1>
+  <input type="date" name="date" date-date-format="YYYY-MM-DD" style="height: 20px; width: 500px" required>
+  <br> <br>
+  <input type="submit" value="Send Request">
+</form>
+
+</center>
