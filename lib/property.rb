@@ -3,12 +3,13 @@ require 'pg'
 
 class Property
 
-  attr_reader :id, :ownerID, :title, :description, :picture, :ppn, :start_date, :end_date
+  attr_reader :id, :ownerID, :title, :address, :description, :picture, :ppn, :start_date, :end_date
 
   def initialize(
     id:,
     ownerID:,
     title:,
+    address: ,
     description:,
     picture:,
     ppn:,
@@ -18,6 +19,7 @@ class Property
     @id = id
     @ownerID = ownerID
     @title = title
+    @address = address
     @description = description
     @picture = picture
     @ppn = ppn
@@ -34,6 +36,7 @@ class Property
         id: property['id'],
         ownerID: property['ownerID'],
         title: property['title'],
+        address: property['address'],
         description: property['description'],
         picture: property['picture'],
         ppn: property['ppn'],
@@ -47,13 +50,19 @@ class Property
   def self.add(
     ownerID:,
     title:,
+    address:,
     description:,
     picture:,
     ppn:,
     start_date:,
     end_date:)
     connection = PG.connect(dbname: which_database)
-    sql = "INSERT INTO properties (ownerID, title, description, picture, ppn, start_available_date, end_available_date) VALUES('#{ownerID}','#{title}','#{description}','#{picture}','#{ppn}','#{start_date}','#{end_date}');"
-    connection.exec(sql)
+    
+    sql = "INSERT INTO properties (ownerID, title, address, description, picture, ppn, start_available_date, end_available_date) VALUES('#{ownerID}','#{title}', '#{address}', '#{description}','#{picture}','#{ppn}','#{start_date}','#{end_date}');"
+    begin 
+      connection.exec(sql)
+    rescue
+      return 'unique error'
+    end
   end
 end

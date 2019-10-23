@@ -6,6 +6,7 @@ describe Property do
     id: 1,
     ownerID: 5,
     title: 'Cool test house',
+    address: '64 zoo lane',
     description: "It is a house and it is really cool but it is also just a test",
     picture: 'www.pictureofacoolhouse.com',
     ppn: 50,
@@ -18,6 +19,7 @@ describe Property do
       expect(property.id).to eq(1)
       expect(property.ownerID).to eq(5)
       expect(property.title).to eq('Cool test house')
+      expect(property.address).to eq('64 zoo lane')
       expect(property.description).to eq("It is a house and it is really cool but it is also just a test")
       expect(property.picture).to eq('www.pictureofacoolhouse.com')
       expect(property.ppn).to eq(50)
@@ -37,6 +39,7 @@ describe Property do
       Property.add(
       ownerID: 5,
       title: 'Cool test house',
+      address: '64 zoo lane',
       description: "It is a house and it is really cool but it is also just a test",
       picture: 'www.pictureofacoolhouse.com',
       ppn: 50,

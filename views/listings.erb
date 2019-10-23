@@ -17,6 +17,18 @@
   <input class="btn btn-primary" type='submit' value='Add new listing' />
 </form>
 
+<form action="/listings" method = 'post'>
+  Start date:
+  <input type="text" name="title" required>
+
+  End date:
+  <input type="text" name="address" required>
+  
+  <input class="btn btn-primary" type="submit" value="Search">
+</form>
+
+
+
 <form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
   <input type="submit" value="View Profile">
 </form>
@@ -25,6 +37,7 @@
   <tr>
     <th></th>
     <th>Title</th>
+    <th>Address</th>
     <th>Description</th>
     <th>Start Date</th>
     <th>End Date</th>
@@ -36,6 +49,7 @@
     <tr>
       <td> <img style="width: 150px; height: auto" src="<%= property.picture %>" > </td>
       <td> <%= property.title %> </td>
+      <td> <%= property.address %> </td>
       <td> <%= property.description %> </td>
       <td> <%= property.start_date %> </td>
       <td> <%= property.end_date %> </td>
