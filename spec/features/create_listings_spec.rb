@@ -1,6 +1,7 @@
 feature 'create a listing' do
   scenario 'user can create a listing' do
-    visit('/listings')
+    sign_up
+    log_in
     click_button('Add new listing')
     expect(page).to have_content('List a new Space')
     fill_in('title', with: 'Taj Mahal')

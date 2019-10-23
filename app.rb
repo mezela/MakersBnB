@@ -47,6 +47,7 @@ end
 
 get'/profile/:id' do
   @requests = Request.view_from_guestid(params[:id])
+  @requests_to_confirm  = Request.view_from_ownerid(params[:id])
   @profile_owner = User.access_via_id(params[:id])
   erb :profile
 end

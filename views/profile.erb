@@ -1,4 +1,7 @@
 <head>
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
   table {
     font-family: arial, sans-serif;
@@ -19,15 +22,13 @@
 </head>
 
 
-<h1>User information: </h1>
 
-<form action="/listings" method= 'get'>
-  <input type="submit" value="Go Back">
-</form>
 
+<h1>Profile information: </h1>
+
+<br>
 
 <table class="table-border" style="width:25%" >
-
   <tr>
     <th>Username:</th>
     <th>Email:</th>
@@ -38,7 +39,13 @@
   </tr>
 </table>
 
-<h1>Your booking requests: </h1>
+<br>
+
+<form action="/listings" method= 'get'>
+  <input class="btn btn-primary" input type="submit" value="Go Back">
+</form>
+
+<h1>Your booking requests: </h1> <br>
 
 <table class="table-border" style="width:25%" >
   <tr>
@@ -48,9 +55,30 @@
   </tr>
   <% @requests.each do |request| %>
     <tr>
-    <td> <%= request.propertyid %> </td>
+    <td> <%= Property.access_via_id(request.propertyID).title %> </td>
     <td> <%= request.date%> </td>
     <td> <%= request.confirmed %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<h1>Booking you need to confirm: </h1> <br>
+
+<table class="table-border" style="width:25%" >
+  <tr>
+    <th>Property name:</th>
+    <th>User trying to request:</th>
+    <th>date:</th>
+    <th></th>
+  </tr>
+  <% @requests_to_confirm.each do |request| %>
+    <tr>
+    <td> <%= Property.access_via_id(request.propertyID).title %> </td>
+    <td> <%= User.access_via_id(request.guestID).username %> </td>
+    <td> <%= request.date%> </td>
+    <td> <input type="submit" value="Confirm"> <br>
+         <input type="submit" value="Reject">
+    </td>
     </tr>
   <% end %>
 </table>
