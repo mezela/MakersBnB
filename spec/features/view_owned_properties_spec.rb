@@ -5,13 +5,7 @@ feature 'view owned properties' do
       log_in
       click_button('Add new listing')
       expect(page).to have_content('List a new Space')
-      fill_in('title', with: 'Taj Mahal')
-      fill_in('description', with: 'Looks cool')
-      fill_in('pictureurl', with: 'https://thumbs-prod.si-cdn.com/rtkp3HcECC3xlPiOGvSnR1M5Rag=/fit-in/1600x0/filters:focal(1471x1061:1472x1062)/https://public-media.si-cdn.com/filer/b6/30/b630b48b-7344-4661-9264-186b70531bdc/istock-478831658.jpg')
-      fill_in('ppn', with: '200')
-      fill_in('start_date', with: '2020-05-11')
-      fill_in('end_date', with: '2020-07-20')
-      click_button('List this space')
+      create_taj_mahal
 
       click_button('View Profile')
       expect(page).to have_content("testusername's properties")
