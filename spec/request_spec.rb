@@ -79,4 +79,23 @@ describe Request do
   end
 
 
+  describe '#view_all_requests' do
+      before do
+        Request.add(
+        guestID: subject.guestID,
+        ownerID: subject.ownerID,
+        propertyID: subject.propertyID,
+        date: subject.date,
+      )
+
+    end
+
+    
+
+    it 'shows all the requests made for a specific property' do
+      Request.confirm(1)
+      expect(Request.view_all_requests(4).length).to eq 1
+    end
+  end
+
 end

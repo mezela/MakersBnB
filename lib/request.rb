@@ -78,9 +78,7 @@ class Request
 
   def self.confirm(id)
     connection = PG.connect(dbname: which_database)
-    sql = "UPDATE requests
-           SET confirmed='TRUE'
-           WHERE id=#{id};"
+    sql = "UPDATE requests SET confirmed='TRUE' WHERE id=#{id};"
     connection.exec(sql)
   end
 
@@ -90,6 +88,21 @@ class Request
     connection.exec(sql)
   end
 
+  def self.view_all_requests(propid)
+    connection = PG.connect(dbname: which_database)
+    sql = "SELECT * FROM requests WHERE propertyid=#{propid} AND confirmed='TRUE'"
+    result = connection.exec(sql)
+    @results = result.map do |request|
+      Request.new(
+        id: request['id'],
+        guestID: request['guestid'],
+        ownerID: request['ownerid'] ,
+        propertyID: request['propertyid'] ,
+        date: request['date'],
+        confirmed: request['confirmed'])
+      end
+    @results
+  end
 
 
 
