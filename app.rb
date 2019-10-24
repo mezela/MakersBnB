@@ -18,7 +18,6 @@ get '/signup' do
 end
 
 post '/login' do
-  p params
   session[:currentuser] = User.access_account(params[:username],params[:password])
   if (session[:currentuser] == "invalid login error")
     flash[:warning] = 'Incorrect login details'
