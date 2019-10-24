@@ -18,6 +18,7 @@ require 'simplecov-console'
 require 'capybara'
 require 'rspec'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'features/web_helpers'
 require_relative './setup_testing_database'
 

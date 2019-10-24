@@ -61,8 +61,12 @@ end
 
 get '/book/:id' do
   @currentuser=session[:currentuser]
+  p @currentuser
   session[:property_being_booked] = Property.access_via_id(params[:id])
   @property = session[:property_being_booked]
+  p @property
+  @requests = Request.view_all_requests(@property.id)
+  p @requests
   erb :create_booking
 end
 
