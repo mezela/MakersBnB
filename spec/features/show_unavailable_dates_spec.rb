@@ -24,7 +24,9 @@ feature 'show unavailable dates' do
     log_in_as_pam
     click_button('Book now')
     fill_in('date', with: '2020-06-20')
+
     click_button('Send Request')
+    
     click_button('Log Out')
     log_in
     click_button('View Profile')
