@@ -34,7 +34,7 @@ class Property
     @results = result.map do |property|
       Property.new(
         id: property['id'],
-        ownerID: property['ownerID'],
+        ownerID: property['ownerid'],
         title: property['title'],
         address: property['address'],
         description: property['description'],
@@ -51,6 +51,7 @@ class Property
     connection = PG.connect(dbname: which_database)
     sql = "SELECT * FROM properties WHERE id=#{id}"
     result = connection.exec(sql)
+    results = result.map do |property|
       property = Property.new(
         id: result[0]['id'],
         ownerID: result[0]['ownerid'],
@@ -62,7 +63,8 @@ class Property
         start_date: result[0]['start_available_date'],
         end_date: result[0]['end_available_date']
       )
-      return property
+    end
+    return results[0]
   end
 
 

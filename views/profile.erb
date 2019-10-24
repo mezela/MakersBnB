@@ -8,24 +8,28 @@
     border-collapse: collapse;
     width: 100%;
   }
-
-
   td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #e6f2ff;
   }
   </style>
 </head>
 
-<h1><%=@profile_owner.username%>'s Profile Page! </h1>
-<br>
+<div style="background-color:#66b3ff">
+  <font color="white">
+     <form action="/listings" method= 'get'>
+      <label for="Go back"><h2> <%=@profile_owner.username%>'s Profile Page :  </h2></label>
+    <input class="btn btn-primary" input type="submit" value="Go Back">
+    </form>
+  </font>
+</div>
 
 <table class="table-border" style="width:25%" >
+  <tr>
+    <th colspan="2" >Details</th>
+  </tr>
 
   <tr>
     <th>Username:</th>
@@ -37,22 +41,18 @@
   </tr>
 </table>
 
-<h2>Your properties: </h2>
-
+<div style="background-color:#66b3ff"> <h2> <font color="white"> Your properties: </font> </h2></div>
 
 <table class="table-border" style="width:100%" >
-
   <tr>
-    <th></th>
+    <th>Picture</th>
     <th>Title</th>
     <th>Address</th>
     <th>Description</th>
     <th>Start Date</th>
     <th>End Date</th>
     <th>PPN</th>
-    <th></th>
   </tr>
-
     <% @profile_owner_properties.each do |property| %>
     <tr>
       <td> <img style="width: 150px; height: auto" src="<%= property.picture %>" > </td>
@@ -64,19 +64,11 @@
       <td> £<%= property.ppn %> </td>
       </tr>
     <% end %>
-
   <tr>
-
-  </tr>
+</tr>
 </table>
 
-<br>
-
-<form action="/listings" method= 'get'>
-  <input class="btn btn-primary" input type="submit" value="Go Back">
-</form>
-
-<h1>Your booking requests: </h1> <br>
+<div style="background-color:#66b3ff"> <h2> <font color="white"> Your booking requests: </font> </h2></div>
 
 <table class="table-border" style="width:25%" >
   <tr>
@@ -98,7 +90,8 @@
   <% end %>
 </table>
 
-<h1>Booking requests that you need to confirm: </h1> <br>
+
+<div style="background-color:#66b3ff"> <h2> <font color="white"> Booking requests that you need to confirm: </font> </h2></div>
 
 <table class="table-border" style="width:25%" >
   <tr>
@@ -119,14 +112,14 @@
       <%else%>
         <form action="/<%=request.id%>/confirm" method= 'POST'>
         <input type="hidden" name="_method" value="PATCH">
-        <input type="submit" value="Confirm"> <br>
+        <input class="btn btn-primary" type="submit" value="Confirm"> <br>
         </form>
       <%end%>
     </td>
       <td>
         <form action="/<%=request.id%>/delete" method= 'POST'>
         <input type="hidden" name="_method" value="PATCH">
-        <input type="submit" value=Delete> <br>
+        <input class="btn btn-primary" t type="submit" value=Delete> <br>
         </form>
       </td>
   </tr>

@@ -19,53 +19,75 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #e6f2ff;;
 }
 </style>
-
 <body>
-<div class='table-text'>
 
-<h1>Welcome, <%=@currentuser.username%> </h1>
-<form action='/listings/new'>
-  <input class="btn btn-primary" type='submit' value='Add new listing' />
-</form>
+  <div style="background-color:#66b3ff"> <h1> <font color="white"> Welcome, <%=@currentuser.username%> </font> </h1></div>
 
-<form action='/'>
-  <input class="btn btn-primary" type='submit' value='Log Out' />
-</form>
+  <table class="table-border">
+    <tr>
+      <th colspan="4"> <center> <h1> Action Bar </h1> </center> </th>
+    </tr>
 
-<form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
-  <input class="btn btn-primary" input type="submit" value="View Profile">
-</form>
+    <tr>
+      <th> <center> <form action='/'>
+            <input class="btn btn-primary" type='submit' value='Log Out'/>
+            </form> </center>
+      </th>
 
-<h1>Search for Accomodation</h1>
+      <th> <center> <form action='/listings/new'>
+            <input class="btn btn-primary" type='submit' value='Add new listing' />
+            </form> </center>
+      </th>
 
-<form action="/listings" method = 'post'>
-  Start date:
-  <input type="date" name="title"  required>
+      <th>
+          <center>  <form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
+            <input class="btn btn-primary" input type="submit" value="View Profile">
+            </form> </center>
+      </th>
 
-  End date:
-  <input type="date" name="address" required>
+      <th>
 
-  <input class="btn btn-primary" type="submit" value="Search">
-</form>
+        <center>
+
+        <h1>Search for Accomodation</h1>
+
+        <form action="/listings" method = 'post'>
+          Start date:
+          <input type="date" name="title"  required>
+
+          End date:
+          <input type="date" name="address" required>
+
+          <input class="btn btn-primary" type="submit" value="Search">
+        </form>
+
+        </center>
+
+      </th>
+
+    </tr>
+
+  </table>
+
+<div style="background-color:#66b3ff"> <h1> <font color="white"> Properties </font> </h1></div>
 
 <table class="table-border" style="width:100%" >
   <tr>
-    <th></th>
-    <th>Title</th>
+    <th colspan=2 >Property</th>
     <th>Address</th>
     <th>Description</th>
     <th>Start Date</th>
     <th>End Date</th>
     <th>PPN</th>
-    <th></th>
+    <th>Booking Details</th>
   </tr>
 
     <% @properties.each do |property| %>
     <tr>
-      <td> <img style="width: 150px; height: auto" src="<%= property.picture %>" > </td>
+      <td> <img style="width: 150px; height: auto" src="<%= property.picture %>"> </td>
       <td> <%= property.title %> </td>
       <td> <%= property.address %> </td>
       <td> <%= property.description %> </td>
@@ -73,12 +95,16 @@ tr:nth-child(even) {
       <td> <%= property.end_date %> </td>
       <td> £<%= property.ppn %> </td>
       <td>
-        <form action='/book/<%= property.id %>' method="get">
-          <input class="btn btn-primary" type='submit' value='Book now' />
-        </form>
+        <%if((property.ownerID).to_i==(@currentuser.id).to_i) %>
+          You own this property and cannot book it.
+        <%else%>
+          <form action='/book/<%= property.id %>' method="get">
+            <input class="btn btn-primary" type='submit' value='Book now' />
+          </form>
+        <% end %>
       </td>
-      </tr>
-    <% end %>
+    </tr>
+  <%end%>
 
   <tr>
 
