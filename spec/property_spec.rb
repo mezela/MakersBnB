@@ -49,4 +49,5 @@ describe Property do
       expect(Property.view_all.first).to be_instance_of Property
     end
   end
+
 end
