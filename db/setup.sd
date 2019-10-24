@@ -2,11 +2,11 @@ CREATE DATABASE makersbnb;
 \c makersbnb;
 CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(20) UNIQUE, email VARCHAR(200) UNIQUE, password VARCHAR(60));
 CREATE TABLE properties(id SERIAL PRIMARY KEY, ownerID INT, title VARCHAR(50),address VARCHAR(50) UNIQUE, picture VARCHAR(300), description VARCHAR(1000), ppn INT, start_available_date DATE, end_available_date DATE);
-CREATE TABLE requests(id SERIAL PRIMARY KEY, ownerID INT, guestID INT, date DATE, confirmed BOOLEAN DEFAULT FALSE);
+CREATE TABLE requests(id SERIAL PRIMARY KEY, ownerID INT, guestID INT, propertyID INT, date DATE, confirmed BOOLEAN DEFAULT FALSE);
 
 
 CREATE DATABASE makersbnb_test;
 \c makersbnb_test;
 CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(20) UNIQUE, email VARCHAR(200) UNIQUE, password VARCHAR(60));
 CREATE TABLE properties(id SERIAL PRIMARY KEY, ownerID INT, title VARCHAR(50),address VARCHAR(50) UNIQUE, picture VARCHAR(300), description VARCHAR(1000), ppn INT, start_available_date DATE, end_available_date DATE);
-CREATE TABLE requests(id SERIAL PRIMARY KEY, ownerID INT, guestID INT, date DATE, confirmed BOOLEAN DEFAULT FALSE);
+CREATE TABLE requests(id SERIAL PRIMARY KEY, ownerID INT, guestID INT, propertyID INT, date DATE, confirmed BOOLEAN DEFAULT FALSE);

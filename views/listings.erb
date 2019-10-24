@@ -1,4 +1,3 @@
-
 <head>
   <title> Listings</title>
   <link rel="stylesheet" href="/styles.css">
@@ -6,16 +5,41 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
 <body>
 <div class='table-text'>
-
-
-
 
 <h1>Welcome, <%=@currentuser.username%> </h1>
 <form action='/listings/new'>
   <input class="btn btn-primary" type='submit' value='Add new listing' />
 </form>
+
+<form action='/'>
+  <input class="btn btn-primary" type='submit' value='Log Out' />
+</form>
+
+<form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
+  <input class="btn btn-primary" input type="submit" value="View Profile">
+</form>
+
+<h1>Search for Accomodation</h1>
 
 <form action="/listings" method = 'post'>
   Start date:
@@ -23,14 +47,8 @@
 
   End date:
   <input type="text" name="address" required>
-  
+
   <input class="btn btn-primary" type="submit" value="Search">
-</form>
-
-
-
-<form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
-  <input type="submit" value="View Profile">
 </form>
 
 <table class="table-border" style="width:100%" >
@@ -55,7 +73,7 @@
       <td> <%= property.end_date %> </td>
       <td> £<%= property.ppn %> </td>
       <td>
-        <form action='/book/new'>
+        <form action='/book/<%= property.id %>' method="get">
           <input class="btn btn-primary" type='submit' value='Book now' />
         </form>
       </td>

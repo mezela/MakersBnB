@@ -1,13 +1,31 @@
 <head>
-  <title> Listings</title>
   <link rel="stylesheet" href="/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
 </head>
 
 <h1> <%=@profile_owner.username%>'s profile</h1>
 
 <table class="table-border" style="width:25%" >
+
 
   <tr>
     <th>Username:</th>
@@ -19,15 +37,20 @@
   </tr>
 </table>
 
+
 <form action="/listings" method= 'get'>
   <input class="btn btn-secondary" type="submit" value="Go Back">
 </form>
 <h2> <%=@profile_owner.username%>'s properties</h2>
 
 
+<h1>Profile information: </h1>
 
+
+<br>
 
 <table class="table-border" style="width:100%" >
+
   <tr>
     <th></th>
     <th>Title</th>
@@ -54,5 +77,49 @@
   <tr>
 
   </tr>
+</table>
+
+<br>
+
+<form action="/listings" method= 'get'>
+  <input class="btn btn-primary" input type="submit" value="Go Back">
+</form>
+
+<h1>Your booking requests: </h1> <br>
+
+<table class="table-border" style="width:25%" >
+  <tr>
+    <th>Property name:</th>
+    <th>date:</th>
+    <th>confirmed:</th>
+  </tr>
+  <% @requests.each do |request| %>
+    <tr>
+    <td> <%= Property.access_via_id(request.propertyID).title %> </td>
+    <td> <%= request.date%> </td>
+    <td> <%= request.confirmed %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<h1>Booking you need to confirm: </h1> <br>
+
+<table class="table-border" style="width:25%" >
+  <tr>
+    <th>Property name:</th>
+    <th>User trying to request:</th>
+    <th>date:</th>
+    <th></th>
+  </tr>
+  <% @requests_to_confirm.each do |request| %>
+    <tr>
+    <td> <%= Property.access_via_id(request.propertyID).title %> </td>
+    <td> <%= User.access_via_id(request.guestID).username %> </td>
+    <td> <%= request.date%> </td>
+    <td> <input type="submit" value="Confirm"> <br>
+         <input type="submit" value="Reject">
+    </td>
+    </tr>
+  <% end %>
 </table>
 
