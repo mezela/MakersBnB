@@ -22,10 +22,10 @@
   </style>
 </head>
 
-<h1> <%=@profile_owner.username%>'s profile</h1>
+<h1><%=@profile_owner.username%>'s Profile Page! </h1>
+<br>
 
 <table class="table-border" style="width:25%" >
-
 
   <tr>
     <th>Username:</th>
@@ -37,17 +37,8 @@
   </tr>
 </table>
 
+<h2>Your properties: </h2>
 
-<form action="/listings" method= 'get'>
-  <input class="btn btn-secondary" type="submit" value="Go Back">
-</form>
-<h2> <%=@profile_owner.username%>'s properties</h2>
-
-
-<h1>Profile information: </h1>
-
-
-<br>
 
 <table class="table-border" style="width:100%" >
 
@@ -90,36 +81,54 @@
 <table class="table-border" style="width:25%" >
   <tr>
     <th>Property name:</th>
-    <th>date:</th>
+    <th>Date of request:</th>
     <th>confirmed:</th>
   </tr>
   <% @requests.each do |request| %>
     <tr>
     <td> <%= Property.access_via_id(request.propertyID).title %> </td>
     <td> <%= request.date%> </td>
-    <td> <%= request.confirmed %> </td>
+    <td> <% if(request.confirmed=='t')%>
+         Yes
+         <%else%>
+         No
+         <%end%>
+        </td>
     </tr>
   <% end %>
 </table>
 
-<h1>Booking you need to confirm: </h1> <br>
+<h1>Booking requests that you need to confirm: </h1> <br>
 
 <table class="table-border" style="width:25%" >
   <tr>
     <th>Property name:</th>
-    <th>User trying to request:</th>
-    <th>date:</th>
-    <th></th>
+    <th>User trying to make request:</th>
+    <th>Date of request:</th>
+    <th> Confirm </th>
+    <th> Delete </th>
   </tr>
   <% @requests_to_confirm.each do |request| %>
     <tr>
     <td> <%= Property.access_via_id(request.propertyID).title %> </td>
     <td> <%= User.access_via_id(request.guestID).username %> </td>
     <td> <%= request.date%> </td>
-    <td> <input type="submit" value="Confirm"> <br>
-         <input type="submit" value="Reject">
+    <td>
+      <%if(request.confirmed=='t')%>
+        You have confirmed this booking!
+      <%else%>
+        <form action="/<%=request.id%>/confirm" method= 'POST'>
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="submit" value="Confirm"> <br>
+        </form>
+      <%end%>
     </td>
-    </tr>
-  <% end %>
+      <td>
+        <form action="/<%=request.id%>/delete" method= 'POST'>
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="submit" value=Delete> <br>
+        </form>
+      </td>
+  </tr>
+  <%end%>
 </table>
-

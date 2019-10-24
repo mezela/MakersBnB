@@ -82,6 +82,20 @@ get '/listings/new' do
   erb(:new_listing)
 end
 
+patch '/:id/confirm' do
+  id=params[:id]
+  userid = session[:currentuser].id
+  Request.confirm(id)
+  redirect "/profile/#{userid}"
+end
+
+patch '/:id/delete' do
+  id=params[:id]
+  userid = session[:currentuser].id
+  Request.delete(id)
+  redirect "/profile/#{userid}"
+end
+
 post '/listings' do
   @currentuserID = session[:currentuser].id
   property = Property.add(ownerID: @currentuserID, title: params[:title], address: params[:address], description: params[:description], picture: params[:pictureurl], ppn: params[:ppn].to_i, start_date: params[:start_date], end_date: params[:end_date] )
