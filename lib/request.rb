@@ -88,7 +88,7 @@ class Request
     connection.exec(sql)
   end
 
-  def self.view_all_requests(propid)
+  def self.view_confirmed_requests(propid)
     connection = PG.connect(dbname: which_database)
     sql = "SELECT * FROM requests WHERE propertyid=#{propid} AND confirmed='TRUE'"
     result = connection.exec(sql)

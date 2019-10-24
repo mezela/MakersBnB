@@ -90,11 +90,11 @@ describe Request do
 
     end
 
-    
+
 
     it 'shows all the requests made for a specific property' do
       Request.confirm(1)
-      expect(Request.view_all_requests(4).length).to eq 1
+      expect(Request.view_confirmed_requests(4).length).to eq 1
     end
   end
 

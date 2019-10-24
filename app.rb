@@ -65,7 +65,7 @@ get '/book/:id' do
   session[:property_being_booked] = Property.access_via_id(params[:id])
   @property = session[:property_being_booked]
   p @property
-  @requests = Request.view_all_requests(@property.id)
+  @requests = Request.view_confirmed_requests(@property.id)
   p @requests
   erb :create_booking
 end

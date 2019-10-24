@@ -12,9 +12,15 @@
   <h1>
   Enter Booking Date: <br> <br>
   </h1>
+  This property is unavailable on:
+  <% @requests.each do |request|%>
+    <li>
+      <%= request.date %>
+    </li>
+  <% end %>
+  <br>
   <input type="date" class="dropdown" name="date" date-date-format="YYYY-MM-DD" min="<%=@property.start_date%>" max="<%= @property.end_date %>" style="height: 20px; width: 500px" required>
   <br> <br>
   <input type="submit" value="Send Request">
 </form>
-
 </center>
