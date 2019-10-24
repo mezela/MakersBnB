@@ -1,5 +1,6 @@
 require 'pg'
 require_relative 'choose_database'
+require_relative 'property'
 
 class User
 
@@ -52,4 +53,22 @@ class User
     User.new(id: result[0]['id'], username: result[0]['username'] , email: result[0]['email'])
   end
 
+  def self.findproperties(id)
+    connection = PG.connect(dbname: which_database)
+    result = connection.exec("SELECT * FROM properties WHERE ownerid = '#{id}';")
+    @results = result.map do |property|
+      Property.new(
+        id: property['id'],
+        ownerID: property['ownerID'],
+        title: property['title'],
+        address: property['address'],
+        description: property['description'],
+        picture: property['picture'],
+        ppn: property['ppn'],
+        start_date: property['start_available_date'],
+        end_date: property['end_available_date']
+      )
+    end
+    @results
+  end
 end

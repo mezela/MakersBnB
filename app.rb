@@ -49,11 +49,12 @@ get'/profile/:id' do
   @requests = Request.view_from_guestid(params[:id])
   @requests_to_confirm  = Request.view_from_ownerid(params[:id])
   @profile_owner = User.access_via_id(params[:id])
+  @profile_owner_properties = User.findproperties(params[:id])
   erb :profile
 end
 
 get '/listings' do
-  @currentuser=session[:currentuser]
+  @currentuser = session[:currentuser]
   @currentuserID = @currentuser.id
   @properties = Property.view_all
   erb(:listings)
