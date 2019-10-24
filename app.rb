@@ -77,9 +77,9 @@ post '/create_booking' do
       flash[:booked] = "Property already booked on #{params[:date]}"
       redirect ("/book/#{@property.id}")
     end
-    Request.add(guestID: @currentuserID, ownerID: @property.ownerID , propertyID: @property.id , date: date)
-    redirect ('/listings')
   end
+  Request.add(guestID: @currentuserID, ownerID: @property.ownerID , propertyID: @property.id , date: date)
+  redirect ('/listings')
 end
 
 get '/listings/new' do
