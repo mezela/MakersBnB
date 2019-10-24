@@ -76,6 +76,19 @@ class Request
     @results
   end
 
+  def self.confirm(id)
+    connection = PG.connect(dbname: which_database)
+    sql = "UPDATE requests
+           SET confirmed='TRUE'
+           WHERE id=#{id};"
+    connection.exec(sql)
+  end
+
+  def self.delete(id)
+    connection = PG.connect(dbname: which_database)
+    sql = "DELETE FROM requests WHERE id=#{id};"
+    connection.exec(sql)
+  end
 
 
 
