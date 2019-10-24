@@ -104,6 +104,4 @@ class Request
     @results
   end
 
-
-
 end

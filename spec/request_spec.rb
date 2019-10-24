@@ -79,7 +79,7 @@ describe Request do
   end
 
 
-  describe '#view_all_requests' do
+  describe '#view_confirmed_requests' do
       before do
         Request.add(
         guestID: subject.guestID,
@@ -87,13 +87,12 @@ describe Request do
         propertyID: subject.propertyID,
         date: subject.date,
       )
-
+      Request.confirm(1)
     end
 
 
 
     it 'shows all the requests made for a specific property' do
-      Request.confirm(1)
       expect(Request.view_confirmed_requests(4).length).to eq 1
     end
   end
