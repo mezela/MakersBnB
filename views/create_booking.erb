@@ -5,16 +5,24 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
+<%= flash[:booked] %>
 <center>
 
 <form action="/create_booking" method = 'post'>
   <h1>
   Enter Booking Date: <br> <br>
   </h1>
-  <input type="date" class="dropdown" name="date" date-date-format="YYYY-MM-DD" min="<%=@property.start_date%>" max="<%= @property.end_date %>" style="height: 20px; width: 500px" required>
+  This property is unavailable on:
+  <% @requests.each do |request|%>
+    <li>
+      <%= request.date %>
+    </li>
+  <% end %>
+  <br>
+  <input type="date" id="dropdown" name="date" date-date-format="YYYY-MM-DD" min="<%=@property.start_date%>" max="<%= @property.end_date %>" style="height: 20px; width: 500px" required>
   <br> <br>
-  <input type="submit" value="Send Request">
+  
+  <input type="submit" id="btnSubmit" value="Send Request">
 </form>
-
 </center>
+

@@ -63,7 +63,7 @@ get '/book/:id' do
   @currentuser=session[:currentuser]
   session[:property_being_booked] = Property.access_via_id(params[:id])
   @property = session[:property_being_booked]
-  @requests = Request.view_all_requests(@property.id)
+  @requests = Request.view_confirmed_requests(@property.id)
   erb :create_booking
 end
 
@@ -71,8 +71,15 @@ post '/create_booking' do
   @property = session[:property_being_booked]
   @currentuserID = session[:currentuser].id
   date = params[:date]
-  Request.add(guestID: @currentuserID, ownerID: @property.ownerID , propertyID: @property.id , date: date)
-  redirect ('/listings')
+  @requests = Request.view_confirmed_requests(@property.id)
+  @requests.each do |request|
+    if request.date == date
+      flash[:booked] = "Property already booked on #{params[:date]}"
+      redirect ("/book/#{@property.id}")
+    end
+    Request.add(guestID: @currentuserID, ownerID: @property.ownerID , propertyID: @property.id , date: date)
+    redirect ('/listings')
+  end
 end
 
 get '/listings/new' do

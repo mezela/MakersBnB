@@ -22,13 +22,28 @@ def sign_up_as_pam
   click_button 'Create account'
 end
 
+def log_in_as_jay
+  fill_in "username", with: "jay"
+  fill_in "password", with: "password123"
+  click_button 'Log in'
+end
+
+def sign_up_as_jay
+  visit '/'
+  click_button 'Sign up'
+  fill_in "username", with: "jay"
+  fill_in "email", with: "jmail"
+  fill_in "password", with: "password123"
+  click_button 'Create account'
+end
+
 def log_in_as_pam
   fill_in "username", with: "pamela"
   fill_in "password", with: "testpassword123"
   click_button 'Log in'
 end
 
-def create_taj_mahal 
+def create_taj_mahal
   fill_in('title', with: 'Taj Mahal')
       fill_in('description', with: 'Looks cool')
       fill_in('pictureurl', with: 'https://thumbs-prod.si-cdn.com/rtkp3HcECC3xlPiOGvSnR1M5Rag=/fit-in/1600x0/filters:focal(1471x1061:1472x1062)/https://public-media.si-cdn.com/filer/b6/30/b630b48b-7344-4661-9264-186b70531bdc/istock-478831658.jpg')
