@@ -1,12 +1,27 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-  <title> Listings</title>
-  <link rel="stylesheet" href="/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+  <title>MakersBnB</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Merienda&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
+<body id='index'>
+<center>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark transparent" id="nav1">
+  <a class="navbar-brand" href="/">MakersBnB</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <form action="/signup" method= 'get'>
+      <input class="btn btn-primary my-2 my-sm-0" type="submit" value="Sign up">
+    </form>
+
+  </div>
+</nav>
 
 <% flash.keys.each do |type| %>
   <div data-alert class="flash <%= type %> alert-box radius">
@@ -15,24 +30,18 @@
   </div>
 <% end %>
 
-<body>
-
 <h2>Welcome to MakersBnB</h2>
 
-<form action="/signup" method= 'get'>
-  <input type="submit" value="Sign up">
-</form>
-
-
 <form action="/login" method= 'post'>
-  Username:<br>
-  <input type="text" name="username" required>
   <br>
-  Password:<br>
-  <input type="password" name="password" required>
-  <input type="submit" value="Log in">
+  <input class="login" type="text" name="username" placeholder="Username" required>
+  <br>
+  <br>
+  <input class="login" type="password" name="password" placeholder="Password" required>
+  <br>
+  <input class="btn btn-dark btn-lg" type="submit" value="Log in">
 </form>
 
-
+</center>
 </body>
-</html>
+

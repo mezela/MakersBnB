@@ -1,88 +1,60 @@
 <head>
-  <title> Listings</title>
-  <link rel="stylesheet" href="/styles.css">
+  <title> Listings </title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+<body id="listings">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark transparent" id="nav1">
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
 
-tr:nth-child(even) {
-  background-color: #e6f2ff;;
-}
-</style>
-<body>
+     
 
-  <div style="background-color:#66b3ff"> <h1> <font color="white"> Welcome, <%=@currentuser.username%> </font> </h1></div>
+    <form action='/listings/new'>
+  <input class="btn btn-primary" type='submit' value='Add new listing' />
+</form> 
+      
+ <form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
+  <input class="btn btn-primary" input type="submit" value="View Profile">
+</form> 
+    
+    </ul>
+    <form action='/'>
+    <input class="btn btn-primary" type='submit' value='Log Out'/>
+  </form>
+  </div>
+</nav>
 
-  <table class="table-border">
-    <tr>
-      <th colspan="4"> <center> <h1> Action Bar </h1> </center> </th>
-    </tr>
+<center>
+  <h1>  Welcome, <%=@currentuser.username%>  </h1>
 
-    <tr>
-      <th> <center> <form action='/'>
-            <input class="btn btn-primary" type='submit' value='Log Out'/>
-            </form> </center>
-      </th>
+  <div class="search-form" >
+  <form action="/listings" method = 'post'>
+    Start date:
+    <input type="date" name="title"  required>
 
-      <th> <center> <form action='/listings/new'>
-            <input class="btn btn-primary" type='submit' value='Add new listing' />
-            </form> </center>
-      </th>
+    End date:
+    <input type="date" name="address" required>
 
-      <th>
-          <center>  <form action="/profile/<%="#{@currentuser.id}"%>" method= 'get'>
-            <input class="btn btn-primary" input type="submit" value="View Profile">
-            </form> </center>
-      </th>
+    <input class="btn btn-secondary" type="submit" value="Search" disabled>
+  </form>
+  </div>
 
-      <th>
+</center>
 
-        <center>
-
-        <h1>Search for Accomodation</h1>
-
-        <form action="/listings" method = 'post'>
-          Start date:
-          <input type="date" name="title"  required>
-
-          End date:
-          <input type="date" name="address" required>
-
-          <input class="btn btn-primary" type="submit" value="Search">
-        </form>
-
-        </center>
-
-      </th>
-
-    </tr>
-
-  </table>
-
-<div style="background-color:#66b3ff"> <h1> <font color="white"> Properties </font> </h1></div>
-
-<table class="table-border" style="width:100%" >
+<center>
+<table class="table-border" >
   <tr>
-    <th colspan=2 >Property</th>
+    <th colspan=2 ></th>
     <th>Address</th>
     <th>Description</th>
     <th>Start Date</th>
     <th>End Date</th>
     <th>PPN</th>
-    <th>Booking Details</th>
+    <th></th>
   </tr>
 
     <% @properties.each do |property| %>
@@ -99,7 +71,7 @@ tr:nth-child(even) {
           You own this property and cannot book it.
         <%else%>
           <form action='/book/<%= property.id %>' method="get">
-            <input class="btn btn-primary" type='submit' value='Book now' />
+            <input class="btn btn-info" type='submit' value='Book now' />
           </form>
         <% end %>
       </td>
@@ -111,5 +83,5 @@ tr:nth-child(even) {
   </tr>
 </table>
 
-</div>
+</center>
 </body>

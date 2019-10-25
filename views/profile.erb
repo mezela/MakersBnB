@@ -1,52 +1,56 @@
 <head>
-  <link rel="stylesheet" href="/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style>
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    background-color: #e6f2ff;
-  }
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
-<div style="background-color:#66b3ff">
-  <font color="white">
-     <form action="/listings" method= 'get'>
-      <label for="Go back"><h2> <%=@profile_owner.username%>'s Profile Page :  </h2></label>
-    <input class="btn btn-primary" input type="submit" value="Go Back">
-    </form>
-  </font>
-</div>
+<body id="listings">
 
-<table class="table-border" style="width:25%" >
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark transparent" id="nav1">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    <form action="/listings" method= 'get'>
+    <input class="btn btn-dark" input type="submit" value="Go Back">
+    </form>
+    
+    <form action='/listings/new'>
+  <input class="btn btn-primary" type='submit' value='Add new listing' />
+  </form> 
+  
+    </ul>
+    <form action='/'>
+    <input class="btn btn-primary" type='submit' value='Log Out'/>
+  </form> 
+
+  </div>
+</nav>
+
+<h1><%=@profile_owner.username%>'s Profile Page</h1>
+
+
+
+<table class="table-border">
   <tr>
-    <th colspan="2" >Details</th>
+    <th colspan="2" ></th>
   </tr>
 
   <tr>
     <th>Username:</th>
-    <th>Email:</th>
+    <th><%=@profile_owner.username%></th>
   </tr>
   <tr>
-    <th><%=@profile_owner.username%></th>
-    <th> <%=@profile_owner.email%></th>
+    <th>Email:</th>
+    <th><%=@profile_owner.email%></th>
   </tr>
 </table>
 
-<div style="background-color:#66b3ff"> <h2> <font color="white"> Your properties: </font> </h2></div>
-
-<table class="table-border" style="width:100%" >
+<% if @profile_owner_properties %>
+<div class="profile-title">Your properties: </div>
+<table >
   <tr>
-    <th>Picture</th>
-    <th>Title</th>
+    <th></th>
+    <th></th>
     <th>Address</th>
     <th>Description</th>
     <th>Start Date</th>
@@ -67,14 +71,14 @@
   <tr>
 </tr>
 </table>
+<% end %>
 
-<div style="background-color:#66b3ff"> <h2> <font color="white"> Your booking requests: </font> </h2></div>
-
-<table class="table-border" style="width:25%" >
+<div class="profile-title">Your booking requests:</div> 
+<table >
   <tr>
-    <th>Property name:</th>
-    <th>Date of request:</th>
-    <th>confirmed:</th>
+    <th>Property name</th>
+    <th>Date of request</th>
+    <th>confirmed</th>
   </tr>
   <% @requests.each do |request| %>
     <tr>
@@ -91,13 +95,13 @@
 </table>
 
 
-<div style="background-color:#66b3ff"> <h2> <font color="white"> Booking requests that you need to confirm: </font> </h2></div>
+<div class="profiletitle">Booking requests that you need to confirm: </div>
 
-<table class="table-border" style="width:25%" >
+<table >
   <tr>
-    <th>Property name:</th>
-    <th>User trying to make request:</th>
-    <th>Date of request:</th>
+    <th>Property name</th>
+    <th>User trying to make request</th>
+    <th>Date of request</th>
     <th> Confirm </th>
     <th> Delete </th>
   </tr>
@@ -112,16 +116,19 @@
       <%else%>
         <form action="/<%=request.id%>/confirm" method= 'POST'>
         <input type="hidden" name="_method" value="PATCH">
-        <input class="btn btn-primary" type="submit" value="Confirm"> <br>
+        <input class="btn btn-success" type="submit" value="Confirm"> <br>
         </form>
       <%end%>
     </td>
       <td>
         <form action="/<%=request.id%>/delete" method= 'POST'>
         <input type="hidden" name="_method" value="PATCH">
-        <input class="btn btn-primary" t type="submit" value=Delete> <br>
+        <input class="btn btn-danger" type="submit" value=Delete> <br>
         </form>
       </td>
   </tr>
   <%end%>
 </table>
+
+
+</body>
