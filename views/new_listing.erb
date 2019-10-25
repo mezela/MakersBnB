@@ -1,22 +1,33 @@
 <head>
-  <title> Listings</title>
-  <link rel="stylesheet" href="/styles.css">
+  <title>Add new Listing</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
-<html>
+<body id="listings">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark transparent" id="nav1">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    <form action="/listings" method= 'get'>
+    <input class="btn btn-dark" input type="submit" value="Go Back">
+    </form>
+    </ul>
+    <form action='/'>
+    <input class="btn btn-primary" type='submit' value='Log Out'/>
+  </form> 
+
+  </div>
+</nav>
 
 <%= flash[:notice] %>
-
+<center>
 <title>New listing</title>
 
-<body>
-
-<div style="background-color:#66b3ff"> <h1> <font color="white">
 <h1>List a new Space </h1>
-<h2>Please enter property details in the fields below</h2>
-</font></h1></div>
+<div>Please enter property details in the fields below</div>
 
 <form action="/listings" method = 'post'>
   Title:<br>
@@ -40,8 +51,8 @@
   Available to:<br>
   <input type="date" name="end_date" required>
   <br>   <br>
-  <input class="btn btn-primary" type="submit" value="List this space">
+  <input class="btn btn-secondary btn-lg" type="submit" value="List this space">
 </form>
-
+</center>
 </body>
-</html>
+

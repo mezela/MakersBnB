@@ -1,5 +1,14 @@
-<!DOCTYPE html>
-<html>
+
+<head>
+
+<title> Sign Up! </title>
+
+  <link href="https://fonts.googleapis.com/css?family=Merienda&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
 
 <% flash.keys.each do |type| %>
   <div data-alert class="flash <%= type %> alert-box radius">
@@ -8,25 +17,26 @@
   </div>
 <% end %>
 
-<body>
 
-<h2>Please enter your details in the fields below</h2>
+<body id="signup">
+<center>
+<h3>Please enter your details:</h3>
 
-<form action="/account_creation" method = 'post'>
-  Username:<br>
-  <input type="text" name="username" required>
+<form class="signupform" action="/account_creation" method = 'post'>
+  
+  <input class="login" style="text-align:right;" type="text" name="username" placeholder="Username" required>
   <br>
-  Email:<br>
-  <input type="text" name="email" required>
+  
+  <input class="login" style="text-align:right;" type="text" name="email" placeholder="Email" required>
   <br>
 
-  Password:<br>
-  <input type="password" name="password" required>
+  
+  <input class="login" style="text-align:right;" type="password" name="password" placeholder="Password" required>
   <br>
-  Note: Password must be at least 8 characters long and contain and number.
+  <h5>Note: Password must be at least 8 characters long <br> and contain and number </h5>
   <br>
-  <input type="submit" value="Create account">
+  <input type="submit" id="signup-form" class="btn btn-secondary btn-lg" value="Create account">
 </form>
-
+<center>
 </body>
-</html>
+

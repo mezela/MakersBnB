@@ -1,0 +1,120 @@
+#index {
+  background-image: url("imgs/makersbnb_index.jpeg");
+  background-color: black;
+  background-repeat: no-repeat;
+}
+
+#signup {
+  background-image: url("imgs/sign_up2.jpeg");
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#nav1{  
+  opacity: 0.8; 
+  filter:(opacity=50);       
+}
+
+#listings {
+  background-color: #defff6;
+  background-image: linear-gradient(135deg, #defff6 0%, #02423f 100%);
+
+}
+
+
+h1 {
+  font-family: 'Merienda', cursive;
+  padding-top: 100px;
+}
+
+h2 {
+  font-size: 100px;
+  font-family: 'Merienda', cursive;
+  padding: 100px 20px;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+h3 {
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  padding-left: 300px;
+  padding-top: 100px;
+}
+
+h5 {
+  font-style: italic;
+  padding-left: 30px;
+}
+
+.login{
+  background-color: #247557;
+  color: white;
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.signupform {
+  padding-left: 300px;
+}
+
+
+input[type=text]:focus {
+  border: 3px solid white;
+}
+
+input[type=password]:focus {
+  border: 3px solid #555;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.btn {
+  margin: 10px 10px;
+}
+
+.image {
+ border: 1px solid #ddd;
+ border-radius: 4px;
+ padding: 5px;
+ width: 150px;
+ height: auto
+}
+
+.table-text {
+  font-family: 'Roboto Slab', serif;
+}
+
+.table-border {
+  border:6px ;
+  width: 80%;
+  font-family: 'Roboto', sans-serif;
+  border-collapse: collapse;
+  padding-left: 40px;
+  
+}
+
+.search-form {
+  padding: 50px 50px;
+}
+
+td, th {
+  border: 1px solid transparent;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: light-gray;
+}
+
+.profiletitle {
+  font-size: 81000px;
+  font-family: 'Roboto', sans-serif;
+}
