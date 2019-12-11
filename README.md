@@ -53,26 +53,20 @@ $ rspec
 
 ## Approach
 
-We started by deciding what our database tables would contain and then discussing what domain relationships there would be between them:
+We started with the specifications provided. We agreed what the MVP should be and developed user stories for it.
+
+Then we decided what our database tables would contain and discussed what domain relationships there would be between them:
 
 #### CRC Models
 
 TABLE: Users
-| id | forename | surname | email | username | password (encrypted) |
-has n: listings, bookingrequests, Approvedrequests
+| id | username | email | password |
 
-TABLE: Listings
-| id | name | description | cost | user_id | date_from | date_to |
-belongs to: user
-has n: bookingrequests, Approvedrequests
+TABLE: Properties
+| id | ownerid | title | address | picture | description | ppn (price per night) | start_available_date | end_available_date |
 
-TABLE: Bookingrequests
-| id | requested_date | listing_id | user_id | message |
-belongs to: listing, user
-
-TABLE: Bookings / Approvedrequests
-| id | listing_id | user_id | date |
-belongs to: listing, user
+TABLE: Requests
+| id | ownerid | guestid | propertyid | date | confirmed |
 
 #### Domain Relationships
 
@@ -82,25 +76,22 @@ ONE MakersBnB has MANY Users
 ONE User has MANY Listings
 | User |-----≡| Listings |
 
-ONE Listing has MANY BookingRequests
+ONE Listing has MANY Requests
 | Listing |-----≡| BookingRequests |
-
-ONE Listing has MANY ApprovedBookings
-| Listing |-----≡| ApprovedBookings |
 
 ### Next steps
 
 We were able to implement our MVP and some additional features however,
 we didn't have time to implement the following user stories so that would be what we focus on next:
 ```
--Users should receive a text message to a provided number whenever one of the following happens:
--A user requests to book their space
--Their request to book a space is confirmed
--Their request to book a space is denied
+- Users should receive a text message to a provided number whenever one of the following happens:
+- A user requests to book their space
+- Their request to book a space is confirmed
+- Their request to book a space is denied
 
--A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
+- A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
 
--Basic payment implementation though Stripe.
+- Basic payment implementation though Stripe.
 ```
 We would also have liked to implement an ORM (e.g. DataMapper or ActiveRecord) as part of refactoring the code.
 
@@ -156,7 +147,6 @@ So that I can plan my schedule
 I would like to add a range of available dates for a space
 ```
 
-
 Additional User Stories
 ```
 As a user(guest)
@@ -181,7 +171,6 @@ As a user(owner)
 So that a date is not locked out unnecessarily
 I would like a date to be available until a booking is confirmed
 ```
-
 
 ## Technologies
 
