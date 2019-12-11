@@ -9,6 +9,10 @@
 
 MakersBnB is a web app that allows users to view available properties for rent.
 
+![Screenshot](https://github.com/Mezela/MakersBnB/blob/public/Screenshot%202019-12-11%at%15.58.01.png?raw=true)
+
+/Users/student/Documents/Projects/Week6/makersbnb-1/MakersBnB/public/Screenshot 2019-12-11 at 15.58.01.png
+public/Screenshot 2019-12-11 at 15.58.01.png
 This was a team project, with input from the following people:
 - [Jay Issurree](https://github.com/JayIssuree)
 - [Jess Lonsdale](https://github.com/jlonsdale)
