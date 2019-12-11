@@ -70,29 +70,38 @@ TABLE: Requests
 
 #### Domain Relationships
 
-ONE MakersBnB has MANY Users
+- ONE MakersBnB has MANY Users
 | MakersBnB |-----≡| Users |
 
-ONE User has MANY Listings
+- ONE User has MANY Listings
 | User |-----≡| Listings |
 
-ONE Listing has MANY Requests
+- ONE Listing has MANY Requests
 | Listing |-----≡| BookingRequests |
 
 ### Next steps
 
 We were able to implement our MVP and some additional features however,
 we didn't have time to implement the following user stories so that would be what we focus on next:
-```
+
+- Users should receive an email whenever one of the following happens:
+    - They sign up
+    - They create a space
+    - They update a space
+    - A user requests to book their space
+    - They confirm a request
+    - They request to book a space
+    - Their request to book a space is confirmed
+    - Their request to book a space is denied
+
 - Users should receive a text message to a provided number whenever one of the following happens:
 - A user requests to book their space
 - Their request to book a space is confirmed
 - Their request to book a space is denied
-
 - A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
-
 - Basic payment implementation though Stripe.
-```
+
+
 We would also have liked to implement an ORM (e.g. DataMapper or ActiveRecord) as part of refactoring the code.
 
 ## Specifications
@@ -110,15 +119,6 @@ Below are the specifications we were provided. We used these to develop user sto
 - Until a user has confirmed a booking request, that space can still be booked for that night.
 
 Other features:
-- Users should receive an email whenever one of the following happens:
-    - They sign up
-    - They create a space
-    - They update a space
-    - A user requests to book their space
-    - They confirm a request
-    - They request to book a space
-    - Their request to book a space is confirmed
-    - Their request to book a space is denied
 
 ### User Stories
 
